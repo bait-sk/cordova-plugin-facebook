@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.tickk.plugins.facebookconnect"
+    version="0.4.0">
+
+    <name>Facebook Connect</name>
+    <description>Unofficial plugin (forked from the official one) for Facebook in Apache Phonegap.</description>
+
+    <license>Apache 2.0</license>
+    
+    <asset src="www/cdv-plugin-fb-connect.js" target="cdv-plugin-fb-connect.js" />
+    <asset src="www/facebook-js-sdk.js" target="facebook-js-sdk.js" />
+
+    <config-file target="config.xml" parent="/*">
+          <access origin="https://m.facebook.com" />
+          <access origin="https://graph.facebook.com" />
+          <access origin="https://api.facebook.com" />
+          <access origin="https://*.fbcdn.net" />
+          <access origin="https://*.akamaihd.net" />
+    </config-file>
+
+    <engines>
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <!-- android -->
+    <platform name="android">
+        <!-- cordova plugin src files -->
+        <source-file src="src/android/ConnectPlugin.java" target-dir="src/org/apache/cordova/facebook" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Facebook">
+                <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+            </feature>
+        </config-file>
+
+    </platform>
+
+    <!-- ios  @TODO: test! may change. -->
+    <platform name="ios">
+      
+        <!-- Cordova >= 2.3 -->
+        <config-file target="config.xml" parent="plugins">
+            <plugin name="Facebook" value="FacebookConnectPlugin"/>
+        </config-file>
+        
+        <header-file src="src/ios/FacebookConnectPlugin.h" />
+        <source-file src="src/ios/FacebookConnectPlugin.m" />
+
+        <config-file target="*-Info.plist" parent="FacebookAppID">
+            <string>$APP_ID</string>
+        </config-file>
+        
+        <config-file target="*-Info.plist" parent="FacebookDisplayName">
+            <string>$APP_NAME</string>
+        </config-file>
+        
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+          <array>
+            <dict>
+              <key>CFBundleURLSchemes</key>
+              <array>
+                <string>fb$APP_ID</string>
+              </array>
+            </dict>
+          </array>
+        </config-file>
+
+        <!-- system frameworks -->
+        <framework src="libsqlite3.dylib" />
+        <framework src="Social.framework" weak="true" />
+        <framework src="Accounts.framework" weak="true" />
+        <framework src="AdSupport.framework" weak="true" />
+        <framework src="Security.framework" weak="true" />
+
+    </platform>
+
+</plugin>
