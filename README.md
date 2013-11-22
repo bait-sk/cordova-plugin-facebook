@@ -18,3 +18,21 @@ Then add the plugin to your phonegap project:
 **iOS**
 
 tbc
+
+
+EXAMPLE OF USAGE
+----------------
+
+Initialize plugin upon `deviceready` event, replace `1234567890123456789` with your facebook app id.
+
+```javascript
+document.addEventListener('deviceready', function() {
+    try {
+        alert('Device is ready! Make sure you set your app_id below this alert.');
+        FB.init({ appId: "1234567890123456789", nativeInterface: CDV.FB, useCachedDialogs: false });
+        document.getElementById('data').innerHTML = "";
+    } catch (e) {
+        alert(e);
+    }
+}, false);
+```
