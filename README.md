@@ -23,6 +23,8 @@ tbc
 EXAMPLE OF USAGE
 ----------------
 
+For now the JS files provided aren't exported as global modules, so you have to include both `cdv-plugin-fb-connect.js` and `facebook-js-sdk.js` as `script` tags.
+
 Initialize plugin upon `deviceready` event, replace `1234567890123456789` with your facebook app id.
 
 ```javascript
