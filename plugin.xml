@@ -45,31 +45,16 @@
     <platform name="ios">
       
         <!-- Cordova >= 2.3 -->
-        <config-file target="config.xml" parent="plugins">
-            <plugin name="Facebook" value="FacebookConnectPlugin"/>
+        <config-file target="config.xml" parent="/*">
+            <feature name="Facebook">
+                <param name="ios-package" value="FacebookConnectPlugin" />
+            </feature>
         </config-file>
         
         <header-file src="src/ios/FacebookConnectPlugin.h" />
         <source-file src="src/ios/FacebookConnectPlugin.m" />
 
-        <config-file target="*-Info.plist" parent="FacebookAppID">
-            <string>$APP_ID</string>
-        </config-file>
-        
-        <config-file target="*-Info.plist" parent="FacebookDisplayName">
-            <string>$APP_NAME</string>
-        </config-file>
-        
-        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
-          <array>
-            <dict>
-              <key>CFBundleURLSchemes</key>
-              <array>
-                <string>fb$APP_ID</string>
-              </array>
-            </dict>
-          </array>
-        </config-file>
+
 
         <!-- system frameworks -->
         <framework src="libsqlite3.dylib" />
